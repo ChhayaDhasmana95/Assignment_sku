@@ -1,0 +1,18 @@
+<%= form_tag skus_path(id: params[:id]),method: "post", multipart: true do %>
+  <div class="field">
+    <%= label_tag :csv %><br />
+    <%= file_field_tag :csv, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :sku_denominations %>
+    
+    <%= text_field_tag :sku_denominations, autocomplete: "sku_denominations" %>
+  </div>
+
+  
+
+  <div class="actions">
+    <%= submit_tag "Submit" %>
+  </div>
+<% end %>

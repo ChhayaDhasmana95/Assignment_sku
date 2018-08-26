@@ -1,0 +1,45 @@
+<%= link_to "<button>SKU denomination creation</button>".html_safe, "#", class: "text-center", id: "sku_create" %>
+<div class= "sku_form" id="sku_form">
+	<%= form_tag skus_path(id: params[:id]),method: "post", id: "new_sku_form", remote: true, multipart: true  do %>
+  <div class="field">
+    <%= label_tag :csv,"Upload CSV" %><br />
+    <%= file_field_tag :csv, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :sku_denominations %>
+    
+    <%= text_field_tag :sku_denominations  %>
+  </div>
+
+  
+
+  <div class="actions">
+    <%= submit_tag "Submit" %>
+  </div>
+<% end %>
+
+</div>
+<div id="new_csv_load">
+	<%= render partial: "download_csv_file"%>
+</div>
+
+<script>
+	$('#new_sku_form').validate({
+     rules: {
+      "csv" :  { required: true },
+      "sku_denominations": { required: true },
+     },
+     message: {
+     
+      "csv": {required: "*This field is mandatory"},
+      "sku_denominations": { required:  "*This field is mandatory" },
+    }
+  });
+	$("#sku_form").hide();
+	$("#new_csv_load").hide();
+	$("#sku_create").click(function(){
+      $("#sku_form").show();
+	});
+	
+</script>

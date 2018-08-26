@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TestApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if user_signed_in? %>
+      <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
+    <% else %>
+      <%= link_to "Sign up", new_user_registration_path  %> |
+      <%= link_to "Login", new_user_session_path  %>
+    <% end %>
+    <div class= "flash-error top-flash-error">
+      <%= render partial: "devise/shared/flash" %>
+    </div>
+    <%= yield %>
+  </body>
+</html>
